@@ -38,8 +38,26 @@ DEFINE_string(pdim_hint_list, "", "partition dimension hint");
 DEFINE_string(pratio_hint_list, "", "partition ratio hint");
 DEFINE_string(chain_lengths_list, "", "chain_lengths_list");
 
+std::vector<float> split2float(std::string text)
+{
+  std::vector<float> numbers;
+  std::stringstream ss(text);
+  std::string token;
 
-std::vector<int> split2number(std::string text)
+  while (getline(ss, token, ','))
+  {
+    float num = std::stof(token);
+    numbers.push_back(num);
+  }
+
+  // 输出切分后的整数
+  // for (const auto &num : numbers)
+  // {
+  //   std::cout << num << std::endl;
+  // }
+  return numbers;
+}
+std::vector<int> split2int(std::string text)
 {
   std::vector<int> numbers;
   std::stringstream ss(text);

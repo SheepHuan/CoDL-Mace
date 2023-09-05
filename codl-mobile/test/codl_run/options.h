@@ -35,5 +35,6 @@ DECLARE_string(pdim_hint_list);
 DECLARE_string(pratio_hint_list);
 DECLARE_string(chain_lengths_list);
 
-std::vector<int> split2number(std::string text);
+std::vector<int> split2int(std::string text);
+std::vector<float> split2float(std::string text);
 #endif

@@ -799,11 +799,17 @@ void Vgg16Builder::Build(
     else if (!codl_config->soc_name().compare("Dimensity8050"))
     {
       LOG(INFO) << "For Dimensity8050 " << __FILE__ << ":" << __LINE__;
-      std::string pdims_hint_list=FLAGS_pdim_hint_list;
+      std::string pdims_hint_list = FLAGS_pdim_hint_list;
+      std::string pratio_hint_list = FLAGS_pratio_hint_list;
+      std::string chain_lengths_list = FLAGS_chain_lengths_list;
+      // LOG(INFO) << pdims_hint_list;
       // std::vector<int> pdims_hint_list = split2number(pdims_hint_list);
-      chain_lengths = {3, 5, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1};
-      pdims = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1, 4, 4, 4};
-      pratioes = {0.6, 0.6, 0.6, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.4, 0.4, 0.3, 0.3, 0.5, 0.5, 0.5, 1, 0.5, 0.2, 0.1};
+      chain_lengths = split2int(chain_lengths_list);
+      pratioes = split2float(FLAGS_pratio_hint_list);
+      pdims = split2int(pdims_hint_list);
+      // chain_lengths = {3, 5, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1};
+      // pdims = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1, 4, 4, 4};
+      // pratioes = {0.6, 0.6, 0.6, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.4, 0.4, 0.3, 0.3, 0.5, 0.5, 0.5, 1, 0.5, 0.2, 0.1};
     }
   }
   else if (chain_param_hint == 20)
