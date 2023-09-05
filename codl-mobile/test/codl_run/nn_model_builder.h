@@ -2,6 +2,7 @@
 #ifndef TEST_CODL_RUN_NN_MODEL_BUILDER_H_
 #define TEST_CODL_RUN_NN_MODEL_BUILDER_H_
 
+#include "test/codl_run/options.h"
 #include <vector>
 #include "test/codl_run/op_test_task_chain.h"
 

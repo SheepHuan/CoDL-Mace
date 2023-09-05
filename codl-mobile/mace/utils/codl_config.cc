@@ -61,10 +61,11 @@ void CodlConfig::Show() {
   LOG(INFO) << "GPU warp size: " << gpu_warp_size_;
   LOG(INFO) << "Max work group size: " << kwg_size_;
   LOG(INFO) << "Predict model path: " << predict_model_path_;
-  for (auto iter = predict_model_filenames_.begin();
-      iter != predict_model_filenames_.end(); ++iter) {
-    LOG(INFO) << "Predict model file name: " << *iter;
-  }
+  // for (auto iter = predict_model_filenames_.begin();
+  //     iter != predict_model_filenames_.end(); ++iter) {
+  //   LOG(INFO) << "Predict model file name: " << *iter;
+  // }
+  //  LOG(INFO) << "Predict model file name: Done ";
 }
 
 CodlConfig *GetGlobalCodlConfig() {

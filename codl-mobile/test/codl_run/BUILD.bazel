@@ -142,6 +142,7 @@ cc_library(
     name = "libop_chain_test",
     hdrs = [
         "nn_model_builder.h",
+        "options.h"
     ],
     srcs = [
         "nn_model_builder.cc",

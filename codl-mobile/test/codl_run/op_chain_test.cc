@@ -1,5 +1,5 @@
 
-#include "gflags/gflags.h"
+#include "test/codl_run/options.h"
 #include "test/codl_run/op_chain_latency_predict.h"
 #include "test/codl_run/op_chain_search.h"
 #include "test/codl_run/op_chain_executor.h"
@@ -27,13 +27,17 @@ DEFINE_bool(profile_data_transform, false, "profile data transform");
 DEFINE_bool(profile_compute, false, "profile compute");
 DEFINE_int32(pdim_hint, 0, "partition dimension hint");
 DEFINE_int32(pratio_hint, 0, "partition ratio hint");
-DEFINE_string(pdim_hint_list, "", "partition dimension hint");
-DEFINE_string(pratio_hint_list, "", "partition ratio hint");
+
 DEFINE_bool(data_transform, false, "data transform");
 DEFINE_bool(compute, true, "compute");
 DEFINE_string(search_method, "serial", "search method");
 DEFINE_int32(search_baseline, 0, "search baseline");
 DEFINE_int32(debug_level, 1, "debug level");
+
+DEFINE_string(pdim_hint_list, "", "partition dimension hint");
+DEFINE_string(pratio_hint_list, "", "partition ratio hint");
+DEFINE_string(chain_lengths_list, "", "chain_lengths_list");
+
 
 std::vector<int> split2number(std::string text)
 {
@@ -757,7 +761,7 @@ int example_nn_model_chain_search(const std::string &model_name)
   {
     std::shared_ptr<NnModelBuilder> builder(
         new Vgg16Builder(common_param));
-    // builder->Build(chain_idx, pdim, pratio, src_params);
+
     builder->Build(chain_idx, chain_param_hint, src_params);
   }
   else if (!model_name.compare("fast_style_transfer"))
@@ -993,6 +997,7 @@ int example_nn_model_real_chain_search(const std::string &model_name)
     LOG(INFO) << "Unsupported NN model " << model_name;
     return 0;
   }
+
 #if 0
   else if (!model_name.compare("mobilenetv2")) {
     build_mobilenetv2(pdim, pratio, params);
@@ -1038,7 +1043,8 @@ int example_nn_model_real_chain_search(const std::string &model_name)
       chain_params.push_back(params);
     }
   }
-
+  LOG(INFO) << __FILE__ << ":" << __LINE__;
+  return 0;
   for (int i = 0; i < rounds; i++)
   {
     const int iner_rounds = 10 + 1;
@@ -1199,8 +1205,10 @@ int example_alexnet()
 
 int example_vgg16()
 {
+  // LOG(INFO) << __FILE__ << ":" << __LINE__;
   if (FLAGS_test.compare("vgg16_chain_search") == 0)
   {
+
     example_nn_model_chain_search("vgg16");
   }
   else if (FLAGS_test.compare("vgg16_real_chain_search") == 0)
@@ -1426,20 +1434,21 @@ int main(int argc, char *argv[])
 {
   gflags::ParseCommandLineFlags(&argc, &argv, true);
   print_flags();
+  // LOG(INFO) << "t";
   // example_yolov2();
-  example_posenet();
-  example_alexnet();
+  // example_posenet();
+  // example_alexnet();
   example_vgg16();
-  example_fast_style_transfer();
-  example_retinaface();
-  example_mobilenetv1();
-  example_mobilenetv2();
-  example_resnet50v1();
-  example_resnet50v2();
-  exmaple_matmul_net();
-  example_bert();
-  example_op_chain_net();
-  example_full_op_chain_search();
+  // example_fast_style_transfer();
+  // example_retinaface();
+  // example_mobilenetv1();
+  // example_mobilenetv2();
+  // example_resnet50v1();
+  // example_resnet50v2();
+  // exmaple_matmul_net();
+  // example_bert();
+  // example_op_chain_net();
+  // example_full_op_chain_search();
 
   return 0;
 }
