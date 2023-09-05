@@ -69,5 +69,7 @@ def tune_vgg16(chain_idx,device_id="H933CK9N01234567",round=50):
     
 device_id = "H933CK9N01234567"  
 model_name = "vgg16"
-# gpu_only(device_id,model_name)
-tune_vgg16(0)
+
+cpu_only(device_id,model_name)
+gpu_only(device_id,model_name)
+# tune_vgg16(0)
