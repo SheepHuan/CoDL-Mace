@@ -1,0 +1,12 @@
+{
+  "SocName": "Dimensity8050",
+  "GPUWarpSize": 8,
+  "MaxWorkGroupSize": 512,
+  "PredictModelPath": "/data/local/tmp/codl/saved_prediction_models",
+  "PredictModelFiles": ["mulayer_conv2d_cpu.json",
+                        "mulayer_conv2d_gpu.json",
+                        "mulayer_pooling_cpu.json",
+                        "mulayer_pooling_gpu.json",
+                        "mulayer_fc_cpu.json",
+                        "mulayer_fc_gpu.json"]
+}
