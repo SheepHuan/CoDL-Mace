@@ -802,8 +802,6 @@ void Vgg16Builder::Build(
       std::string pdims_hint_list = FLAGS_pdim_hint_list;
       std::string pratio_hint_list = FLAGS_pratio_hint_list;
       std::string chain_lengths_list = FLAGS_chain_lengths_list;
-      // LOG(INFO) << pdims_hint_list;
-      // std::vector<int> pdims_hint_list = split2number(pdims_hint_list);
       chain_lengths = split2int(chain_lengths_list);
       pratioes = split2float(FLAGS_pratio_hint_list);
       pdims = split2int(pdims_hint_list);
@@ -965,6 +963,12 @@ void FastStyleTransferBuilder::Build(
       pdims = std::vector<int>(op_count_, 1);
       pratioes = {0.4, 0.8, 0.8, 0.4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
                   0.3, 0.3, 0.3, 0.4};
+    }
+    else if (!codl_config->soc_name().compare("Dimensity8050"))
+    {
+      chain_lengths = {1, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1};
+      pdims = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4};
+      pratioes = {0.7, 0.9, 0.9, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1};
     }
   }
 
@@ -1374,6 +1378,16 @@ void RetinaFaceBuilder::Build(
                   0.3, 0.4, 0.3, 0.4, 0.4, 0.3, 0.4, 0.3, 0.3, 0.3,
                   0.3, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.1, 0.1, 0.1,
                   0.2, 0.1, 1.0, 0.1, 0.2, 0.1, 1.0};
+    }
+    else if (!codl_config->soc_name().compare("Dimensity8050"))
+    {
+      LOG(INFO) << "For Dimensity8050 " << __FILE__ << ":" << __LINE__;
+      std::string pdims_hint_list = FLAGS_pdim_hint_list;
+      std::string pratio_hint_list = FLAGS_pratio_hint_list;
+      std::string chain_lengths_list = FLAGS_chain_lengths_list;
+      chain_lengths = split2int(chain_lengths_list);
+      pratioes = split2float(FLAGS_pratio_hint_list);
+      pdims = split2int(pdims_hint_list);
     }
   }
 

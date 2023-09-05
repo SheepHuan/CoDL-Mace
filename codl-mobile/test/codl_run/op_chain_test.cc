@@ -1458,7 +1458,7 @@ int main(int argc, char *argv[])
   // example_alexnet();
   example_vgg16();
   // example_fast_style_transfer();
-  // example_retinaface();
+  example_retinaface();
   // example_mobilenetv1();
   // example_mobilenetv2();
   // example_resnet50v1();

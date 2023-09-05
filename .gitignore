@@ -26,3 +26,5 @@ build/
 prebuild/
 bin/
 .vscode/
+
+bazel-codl-mobile/
